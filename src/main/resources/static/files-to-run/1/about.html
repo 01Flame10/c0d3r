@@ -1,0 +1,44 @@
+package bmstu.tasd.lab2.sorts;
+
+
+import bmstu.tasd.lab2.entity.TasdBook;
+
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.List;
+
+public class TasdInsertationSortAlgorithm {
+
+    public static void sortBooks(List<TasdBook> list) {
+        int i, j;
+        TasdBook temp;
+        for (i = 1; i < list.size(); i++) {
+            temp = list.get(i);
+            j = i - 1;
+
+            while (j >= 0 && list.get(j).compareTo(temp) > 0) {
+
+                list.set(j + 1, list.get(j));
+                j--;
+            }
+            list.set(j + 1, temp);
+        }
+    }
+
+    public static void sortKey(List<Integer> list) {
+        int i, j;
+        Integer temp;
+        for (i = 1; i < list.size(); i++) {
+            temp = list.get(i);
+            j = i - 1;
+
+            while (j >= 0 && list.get(j).compareTo(temp) > 0) {
+                list.set(j + 1, list.get(j));
+                j--;
+            }
+            list.set(j + 1, temp);
+        }
+    }
+}
+
+

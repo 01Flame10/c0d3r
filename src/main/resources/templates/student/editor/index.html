@@ -1,0 +1,902 @@
+<html>
+<head>
+    <title>C0D3R v0.01</title>
+    <style>
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .main {
+            background-color: #303030;
+        }
+
+        /*
+        *, *::before, *::after {
+          box-sizing: border-box;
+        }
+        */
+
+        .container {
+            margin-top: 5px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+            margin-right: 0px;
+            transform: translateZ(0);
+            -webkit-text-size-adjust: none;
+            width: 250px;
+            height: 100px;
+        }
+
+        .editor {
+            display: block;
+            position: absolute;
+            z-index: 20000;
+            left: 50px;
+            font: 15px sans-serif;
+            letter-spacing: 1px;
+            width: 200px;
+            height: 100px;
+            margin: 0;
+            padding: 0px;
+            color: transparent;
+            caret-color: #fafafa;
+            cursor: default;
+            border: none;
+            border-radius: 0;
+            overflow: auto;
+            outline: none;
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+            resize: none;
+            background-color: transparent;
+            white-space: nowrap;
+        }
+
+        /*
+        input, textarea {
+            cursor: url(cursor.cur);
+        }*/
+
+        .linepack {
+            position: absolute;
+            z-index: 10000;
+            border: 0;
+            background-color: transparent;
+            overflow: hidden;
+            pointer-events: none;
+            transition: transform 1s;
+            width: 43px;
+            height: 100px;
+            margin: 0;
+            background-color: #4a4a4a;
+            border-right: 7px solid #333333;
+        }
+
+        .codepack {
+            position: absolute;
+            left: 50px;
+            z-index: 10000;
+            border: 0;
+            background-color: transparent;
+            overflow: hidden;
+            pointer-events: none;
+            transition: transform 1s;
+            width: 200px;
+            height: 100px;
+            margin: 0;
+        }
+
+        .lines {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            text-align: right;
+            width: 40px;
+            padding: 0px;
+            font: 15px sans-serif;
+            letter-spacing: 1px;
+            color: #808080;
+            border: none;
+            border-radius: 0;
+            overflow: hidden;
+            outline: none;
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+            resize: none;
+            background-color: #4a4a4a;
+        }
+
+        .code {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            padding: 0px;
+            font: 15px sans-serif;
+            letter-spacing: 1px;
+            color: #ffffff;
+            border: none;
+            border-radius: 0;
+            overflow: hidden;
+            outline: none;
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+            resize: none;
+            background-color: transparent;
+            white-space: nowrap;
+        }
+
+        .core {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .menu {
+            display: block;
+            width: 100%;
+            height: 28px;
+            background-color: #4b4b4b;
+            background-image: linear-gradient(#303030, #4b4b4b 90%);
+            color: #ffffff;
+            box-shadow: 0px 0px 5px #202020;
+            margin: 0;
+            padding: 0;
+        }
+
+        .menu-items {
+            padding-top: 6px;
+            padding-left: 30px;
+            font: 14px sans-serif;
+            color: #ffffff;
+            cursor: default;
+        }
+
+        .menu-item {
+            color: #e8e8e8;
+            text-decoration: none;
+            font-family: sans-serif;
+            font-size: 14px;
+            cursor: default;
+        }
+
+        a:hover {
+            color: #f9f9f9;
+            text-decoration: none;
+        }
+
+        .leftbar {
+            width: 220px;
+            height: 730px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .files {
+            width: 220px;
+            height: 500px;
+            color: #e8e8e8;
+            padding: 0px;
+            margin-left: 0px;
+            margin-right: 3px;
+            margin-top: 5px;
+            margin-bottom: 0px;
+            overflow: hidden;
+            background-color: #4a4a4a;
+        }
+
+        .users {
+            width: 220px;
+            height: 210px;
+            color: #e8e8e8;
+            margin-left: 0px;
+            margin-right: 3px;
+            margin-top: 3px;
+            margin-bottom: 0px;
+            padding: 0px;
+            overflow: hidden;
+            background-color: #4a4a4a;
+        }
+
+        .area-files {
+            font: 12px sans-serif;
+            font-style: normal;
+            width: 218px;
+            height: 498px;
+            background-color: #3d3d3d;
+            margin-top: 1px;
+            margin-bottom: 1px;
+            margin-left: 1px;
+            margin-right: 1px;
+        }
+
+        .area-users {
+            font: 12px sans-serif;
+            font-style: normal;
+            width: 218px;
+            height: 208px;
+            background-color: #3d3d3d;
+            margin-top: 1px;
+            margin-bottom: 1px;
+            margin-left: 1px;
+            margin-right: 1px;
+        }
+
+        .worktop {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            margin: 0;
+            padding: 0;
+        }
+
+        .output {
+            width: 250px;
+            height: 210px;
+            color: #e8e8e8;
+            margin: 0px;
+            margin-top: 3px;
+            padding: 0px;
+            overflow: hidden;
+            background-color: #4a4a4a;
+        }
+
+        .area-output {
+            font: 12px sans-serif;
+            font-style: normal;
+            width: 248px;
+            height: 208px;
+            background-color: #3d3d3d;
+            margin: 1px;
+        }
+
+        .panel-container {
+            padding: 10px;
+            overflow: scroll;
+        }
+
+        .panel-title {
+            margin-bottom: 7px;
+            font-weight: bold;
+            cursor: default;
+        }
+
+        .dir-link {
+            padding-left: 0px;
+            padding-top: 2px;
+            padding-bottom: 2px;
+            margin-top: 1px;
+            margin-bottom: 1px;
+            cursor: default;
+        }
+
+        .file-link {
+            padding-left: 15px;
+            padding-top: 2px;
+            padding-bottom: 2px;
+            margin-top: 1px;
+            margin-bottom: 1px;
+            cursor: default;
+        }
+
+        .file-link-active {
+            padding-left: 15px;
+            padding-top: 2px;
+            padding-bottom: 2px;
+            margin-top: 1px;
+            margin-bottom: 1px;
+            background-color: #5a5a5a;
+            cursor: default;
+        }
+
+        .file-indicator {
+            float: left;
+            width: 15px;
+            font: 10px sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            padding-top: 1px;
+        }
+
+        .active-title {
+            border: 1px solid #505050;
+            background-color: #505050;
+            padding: 3px;
+            width: 80px;
+            text-align: center;
+            margin-right: 5px;
+        }
+
+        .inactive-title {
+            border: 1px solid #505050;
+            color: #b0b0b0;
+            padding: 3px;
+            width: 80px;
+            text-align: center;
+            margin-right: 5px;
+        }
+
+        /*.editor:focus, button:focus
+        {
+          outline: none;
+          box-shadow: 0 0 0 2px #c6aada;
+        }*/
+
+        .f-row {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .f-block {
+            width: auto;
+        }
+
+        .team-member-code-pointer {
+            position: absolute;
+            top: 20px;
+            left: 70px;
+            width: 130px;
+            margin: 0;
+            padding: 5px;
+            color: #f0f0f0;
+            background-color: rgba(204, 90, 115, 0.9);
+            border: 0;
+            border-radius: 4px !important;
+            z-index: 20000;
+        }
+
+        .team-member-code-pointer-symbol {
+            position: absolute;
+            top: 25px;
+            left: 10px;
+            width: 50px;
+            margin: 0;
+            padding: 0;
+            color: rgba(204, 90, 115, 0.9);
+            z-index: 20010;
+        }
+
+    </style>
+</head>
+<body class="main">
+<div class="core" id="core">
+    <div class="menu">
+        <div class="menu-items">
+            <div class="f-row">
+                <div class="f-block"><img src="assets/images/logo_x.png"
+                                          style="width:20px;height:20px;border:0;margin-top:-2px;margin-right:3px;">
+                </div>
+                <div class="f-block"><font color="#e8e8e8"><b>C0D3R</b></font> &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; <a
+                        href="" class="menu-item">File</a> &nbsp; &nbsp; &nbsp;&nbsp; <a href=""
+                                                                                         class="menu-item">Edit</a>
+                    &nbsp; &nbsp; &nbsp;&nbsp; <a href="" class="menu-item">Run</a> &nbsp; &nbsp; &nbsp;&nbsp; <a
+                            href="" class="menu-item">Team</a> &nbsp; &nbsp; &nbsp;&nbsp; <a href="" class="menu-item">Settings</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="worktop">
+        <div class="leftbar" id="leftbar">
+            <div class="files" id="files">
+                <div class="area-files" id="area-files">
+                    <div class="panel-container" id="panel-container-path">
+                        <div class="panel-title">
+                            <div class="active-title">Projects</div>
+                        </div>
+
+                        <textarea id="add-file" type="text"></textarea>
+                        <br>
+                        <div class="active-title" onclick="createFile()">Create file</div>
+                        <div class="dir-link" id="dir-link"><span class="file-indicator">&#9660; <!-- &#9658; --></span> main</div>
+                        <div class="file-link">index.html</div>
+                        <div class="file-link-active">about.html</div>
+                        <div class="file-link">register.html</div>
+                        <div class="file-link">contact.php</div>
+                    </div>
+                </div>
+            </div>
+            <div class="users" id="users">
+                <div class="area-users" id="area-users">
+                    <div class="panel-container">
+                        <div class="panel-title">
+                            <div class="active-title">Team</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="rightbar">
+            <div class="container" id="container">
+                <div class="linepack" id="linepack">
+                    <div class="lines" id="lines">
+                    </div>
+                </div>
+                <div class="codepack" id="codepack">
+                    <div class="code" id="code">
+                    </div>
+                </div>
+                <textarea spellcheck="false" class="editor" id="editor"></textarea>
+<!--                <div class="team-member-code-pointer">-->
+<!--                    <div class="team-member-code-pointer-symbol">&#9660</div>-->
+<!--                    John Smith-->
+<!--                </div>-->
+            </div>
+            <div class="output" id="output">
+                <div class="area-output" id="area-output">
+                    <div class="panel-container">
+                        <div class="panel-title">
+                            <div class="f-row">
+                                <div class="active-title" onclick="sendForRun()">RUN</div>
+                                <div class="active-title">Output</div>
+                                <div class="inactive-title">Chat</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-container" id="output-field">
+                        NO OUTPUT
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="assets/js/jquery-3.4.1.min.js"></script>
+<script>
+
+    class EditorFile {
+        constructor(id, path, currentText) {
+            this.id = id;
+            this.path = path;
+            this.currentText = currentText;
+            this.cachedText = currentText;
+        }
+    }
+
+
+    var totalLines = 0;
+    var isBusyAjax = 0;
+
+    var pages = [];
+
+    var pageIndex = 0;
+
+    pages.push(new EditorFile(1, "index.html", ""));
+
+    getEditorState(pages[pageIndex].currentText, pages[pageIndex].path);
+
+
+    showLines(pages[pageIndex].currentText);
+
+    setInterval(sendDifference, 3000);
+
+    function sendDifference() {
+        if (pages[pageIndex].currentText !== pages[pageIndex].cachedText) {
+            if (isBusyAjax) {
+                console.info("business of ajax should be handled somewhere...") // TODO: handle error
+            } else {
+                sendEditorState(pages[pageIndex].currentText.replace(/ /g, '&nbsp;').replace(/\n/g, '<br>'), pages[pageIndex].path);
+            }
+        }
+
+
+        getEditorState(pages[pageIndex].currentText, pages[pageIndex].path);
+
+        $(".code").html(pages[pageIndex].currentText);
+        document.getElementById("editor").value = pages[pageIndex].currentText.replace(/&nbsp;/g, " ").replace(/<br>/g, "\n");
+        showLines(pages[pageIndex].currentText);
+
+        pages[pageIndex].cachedText = pages[pageIndex].currentText;
+    }
+
+    function handleInput() {
+        var text = document.getElementById("editor").value;
+        var l = text.split("\n");
+        var n = l.length;
+
+        if (n > totalLines) {
+            var it = totalLines + 1;
+            totalLines = n;
+            var lines = $(".lines").html();
+            for (var i = it; i <= totalLines; i++) {
+                lines += "<br>" + i;
+                console.info("line added :" + i);
+            }
+            $(".lines").html(lines);
+        } else if (n < totalLines) {
+            var lines = $(".lines").html();
+            var cutLength = 0;
+            for (var i = totalLines; i > n; i--) {
+                cutLength += (4 + i.toString().length);
+            }
+            $(".lines").html(lines.substr(0, lines.length - cutLength));
+            totalLines = n;
+        }
+        var t = $(".editor").val();
+        t = t.replace(/\n/g, '<br>');
+        t = t.replace(/ /g, '&nbsp;');
+        if (t.length >= 4) {
+            if (t.substr(t.length - 4, t.length) == "<br>") {
+                if (t.length < 8 || t.substr(t.length - 8, t.length - 4) != "<br>") {
+                    t += "<br>";
+                }
+            }
+        }
+
+        pages[pageIndex].currentText = t;
+        showLines(t);
+
+
+        $(".code").html(t);
+    }
+
+    function handleScroll() {
+        var st = $(".editor").scrollTop();
+        $(".codepack").scrollTop(st);
+        $(".linepack").scrollTop(st);
+        var sl = $(".editor").scrollLeft();
+        $(".codepack").scrollLeft(sl);
+    }
+
+    function showLines(text) {
+        var l = pages[pageIndex].currentText.split("\n");
+        totalLines = l.length;
+        updateLines(totalLines);
+    }
+
+    function updateLines(totalLines) {
+        var s = "";
+        var totalLines = pages[pageIndex].currentText.split("\n").length;
+        for (var f = 1; f <= totalLines; f++) {
+            s += "" + f;
+            if (f != totalLines) s += "<br>";
+        }
+        $(".lines").html(s);
+    }
+
+
+
+    function setDimensions() {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+        // 1440x759 leftbar:220x730 files:218x500 users:218x210
+
+        if (width > 400 && height > 500) {
+            var w1 = width * 17 / 100;
+            var h1 = height - 29;
+            if (w1 < 150) w1 = 150;
+
+            document.getElementById('leftbar').style.width = w1;
+            document.getElementById('leftbar').style.height = h1;
+
+            var w2 = w1 - 2;
+            var h2 = h1 * 77 / 100;
+
+            document.getElementById('files').style.width = w2;
+            document.getElementById('files').style.height = h2;
+
+            var w3 = w2;
+            var h3 = h1 - h2 - 10;
+
+            document.getElementById('users').style.width = w3;
+            document.getElementById('users').style.height = h3;
+
+            document.getElementById('area-files').style.width = w2 - 2;
+            document.getElementById('area-files').style.height = h2 - 2;
+
+            document.getElementById('area-users').style.width = w3 - 2;
+            document.getElementById('area-users').style.height = h3 - 2;
+
+            var w4 = width - w1;
+            var h4 = h2;
+
+            document.getElementById('container').style.width = w4;
+            document.getElementById('container').style.height = h4;
+
+            var w5 = w4 - 50;
+            var h5 = h2;
+
+            document.getElementById('editor').style.width = w5;
+            document.getElementById('editor').style.height = h5;
+
+            document.getElementById('codepack').style.width = w5;
+            document.getElementById('codepack').style.height = h5;
+
+            document.getElementById('linepack').style.width = 43;
+            document.getElementById('linepack').style.height = h5;
+
+            //document.getElementById('lines').style.width = 40;
+            //document.getElementById('lines').style.height = h5;
+
+            var w6 = w4;
+            var h6 = h3;
+
+            document.getElementById('output').style.width = w6;
+            document.getElementById('output').style.height = h6;
+
+            var w7 = w6 - 2;
+            var h7 = h6 - 2;
+
+            document.getElementById('area-output').style.width = w7;
+            document.getElementById('area-output').style.height = h7;
+
+            document.getElementById("core").style.display = "block";
+        } else {
+            document.getElementById("core").style.display = "none";
+        }
+    }
+
+    function sendEditorState(stateData, path) {
+        if (isBusyAjax === 1) {
+            return 0;
+        }
+
+        isBusyAjax = 1;
+
+        console.log("SENDING ", JSON.stringify({
+            content: stateData,
+            id: pages[pageIndex].id,
+            path: path,
+            language: "wtf",
+            projectId: 1,
+            updateTime: new Date()
+        }),);
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: "/api/editor/state/update",
+            data: JSON.stringify({
+                content: stateData,
+                id: pages[pageIndex].id,
+                path: path,
+                language: "wtf",
+                projectId: 1,
+                updateTime: new Date()
+
+            }),
+            dataType: 'json',
+            cache: false,
+            timeout: 600000,
+            success: function (data) {
+
+                console.log("SUCCESS SAVED: ", data);
+                pages[pageIndex].id = data;
+                $("#btn-search").prop("disabled", false);
+
+                isBusyAjax = false;
+
+            },
+        });
+    }
+
+    function getEditorState(stateData, path) {
+        if (isBusyAjax === 1) {
+            return 0;
+        }
+
+        isBusyAjax = 1;
+
+        console.log("SENDING ", JSON.stringify({id: pages[pageIndex].id}),);
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: "/api/editor/state/get",
+            data: JSON.stringify({
+                    id: 1
+                }
+            ),
+            dataType: 'json',
+            cache: false,
+            timeout: 600000,
+            success: function (data) {
+
+                console.log("SUCCESS GOT: ", data);
+
+                pages = [];
+
+                document.getElementById("dir-link").innerText = "Project - " + data['project']['name'];
+
+                for (var i = 0; i < data['stateList'].length; i++) {
+                    pages.push(new EditorFile(data['stateList'][i]['id'], data['stateList'][i]['path'], data['stateList'][i]['content']));
+                }
+                reassemblePaths(pageIndex);
+
+
+                $(".code").html(pages[pageIndex].currentText);
+                $(".file-link-active").html(pages[pageIndex].path);
+                document.getElementById("editor").value = pages[pageIndex].currentText.replace(/&nbsp;/g, " ").replace(/<br>/g, "\n");
+
+                $("#btn-search").prop("disabled", false);
+
+                isBusyAjax = false;
+
+                $(".code").html(pages[pageIndex].currentText);
+
+            },
+        });
+
+    }
+
+    function sendForRun() {
+        if (isBusyAjax === 1) {
+            return 0;
+        }
+
+        isBusyAjax = 1;
+
+
+        var stateList = [];
+        for (var i = 0; i < pages.length; i++)
+            stateList.push( {
+                content: pages[i].currentText,
+                id: pages[i].id,
+                path: pages[i].path,
+                language: 2,
+                projectId: 1,
+                updateTime: new Date()
+            })
+
+        console.log("SENDING ", JSON.stringify(stateList),);
+
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: "/api/editor/state/run",
+            data: JSON.stringify({
+                project: {
+                    id : 1,
+                },
+                stateList: stateList,
+                }
+            ),
+            dataType: 'json',
+            cache: false,
+            timeout: 600000,
+            success: function (data) {
+
+                console.log("SUCCESS HAS: ", data);
+
+                document.getElementById("output-field").innerText = data['response'];
+
+                isBusyAjax = false;
+
+            },
+        });
+    }
+
+    function createFile() {
+        var formData = document.getElementById("add-file").value;
+        console.log("GOT FORMDATA ", formData);
+        if (isBusyAjax === 1)
+            return 0;
+
+        isBusyAjax = 1;
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: "/api/editor/state/update",
+            data: JSON.stringify({
+                content: "Type anything!",
+                path: formData,
+                language: formData.substring(formData.indexOf(".")),
+                projectId: 1,
+                updateTime: new Date()
+            }),
+            dataType: 'json',
+            cache: false,
+            timeout: 600000,
+            success: function (data) {
+
+                console.log("SUCCESS HAS: ", data);
+
+                pages.push(new EditorFile(data['id'], formData, "Type anything!"));
+
+                reassemblePaths(pages.length - 1);
+
+
+                isBusyAjax = false;
+
+            },
+        });
+    }
+
+    function reassemblePaths(index) {
+        paths = document.getElementsByClassName("file-link");
+        for (var i = 0; i < paths.length;) {
+            console.log("removing", paths[i].outerHTML, " of ", paths.length);
+            paths[i].remove();
+        }
+
+        paths = document.getElementsByClassName("file-link-active");
+        for (var i = 0; i < paths.length;) {
+            console.log("removing", paths[i].outerHTML);
+            paths[i].remove();
+        }
+
+        for (var i = 0; i < pages.length; i++) {
+            let element = document.createElement('div');
+            element.innerHTML = pages[i].path;
+            if (i !== index)
+                element.className = "file-link";
+            else
+                element.className = "file-link-active";
+            (function (index) {
+                element.onclick = function () {
+                    reassemblePaths(index)
+                }
+            })(i);
+            document.getElementById("panel-container-path").append(element);
+        }
+        pageIndex = index;
+
+        $(".code").html(pages[pageIndex].currentText);
+        document.getElementById("editor").value = pages[pageIndex].currentText.replace(/&nbsp;/g, " ").replace(/<br>/g, "\n");
+
+    }
+
+    function onLoadHandler(evt) {
+        isBusyAjax = 0;
+    }
+
+    function onProgressHandler(evt) {
+    }
+
+    function onErrorHandler(evt) {
+        isBusyAjax = 0;
+    }
+
+    function onAbortHandler(evt) {
+        isBusyAjax = 0;
+    }
+
+    function onReadyStateChangeHandler(evt) {
+        var status, text, readyState;
+
+        try {
+            readyState = evt.target.readyState;
+            text = evt.target.responseText;
+            status = evt.target.status;
+        } catch (e) {
+            return;
+        }
+
+        if (readyState == 4 && status == '200' && evt.target.responseText) {
+            if (evt.target.responseText != "Error") {
+                // Success, showing response for debug purposes
+                alert(evt.target.responseText);
+            } else {
+                alert("An error accured while processing your request. Please try again later.");
+            }
+
+            isBusyAjax = 0;
+        }
+    }
+
+    $(".editor").on({
+        'input': handleInput,
+        'scroll': handleScroll
+    });
+
+    showLines($(".editor").html());
+    handleInput();
+
+    setDimensions();
+
+    window.addEventListener('resize', setDimensions);
+
+    // Uncomment this line to start sending state each 10 seconds
+    // tid = setTimeout('sendEditorState()', 10000);
+
+</script>
+</body>
+</html>

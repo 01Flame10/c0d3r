@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" href=" ">
+<title>C0D3R</title>
+
+<!-- Bootstrap core CSS -->
+<link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="../assets/css/mdb.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+
+<style>
+
+    .logo_main
+    {
+        position:relative;
+        background: url(../assets/images/logo_lowres.png) no-repeat;
+        background-size: 175px 30px;
+        border: 0;
+        padding: 0px;
+        margin: 0px;
+        border-spacing: 0px;
+        width: 175px;
+        height: 30px;
+    }
+
+    @media only screen and (min--moz-device-pixel-ratio: 2),
+    only screen and (-o-min-device-pixel-ratio: 2/1),
+    only screen and (-webkit-min-device-pixel-ratio: 2),
+    only screen and (min-device-pixel-ratio: 2)
+    {
+        .logo_main
+        {
+            position:relative;
+            background: url(../assets/images/logo_hires.png) no-repeat;
+            background-size: 175px 30px;
+            border: 0;
+            padding: 0px;
+            margin: 0px;
+            border-spacing: 0px;
+            width: 175px;
+            height: 30px;
+        }
+    }
+
+    .logo_big_main
+    {
+        position:relative;
+        background: url(../assets/images/logo_big_lowres.png) no-repeat;
+        background-size: 209px 40px;
+        border: 0;
+        padding: 0px;
+        margin-left: 12px;
+        margin-right: 0px;
+        margin-top: 5px;
+        margin-bottom: 0px;
+        border-spacing: 0px;
+        width: 209px;
+        height: 40px;
+    }
+
+    @media only screen and (min--moz-device-pixel-ratio: 2),
+    only screen and (-o-min-device-pixel-ratio: 2/1),
+    only screen and (-webkit-min-device-pixel-ratio: 2),
+    only screen and (min-device-pixel-ratio: 2)
+    {
+        .logo_big_main
+        {
+            position:relative;
+            background: url(../assets/images/logo_big_hires.png) no-repeat;
+            background-size: 209px 40px;
+            border: 0;
+            padding: 0px;
+            margin-left: 12px;
+            margin-right: 0px;
+            margin-top: 5px;
+            margin-bottom: 0px;
+            border-spacing: 0px;
+            width: 209px;
+            height: 40px;
+        }
+    }
+
+.hm-gradient
+{
+    background-color: #303030;
+}
+
+.darken-grey-text
+{
+    color: #2E2E2E;
+}
+
+.navbar .dropdown-menu a:hover
+{
+    color: #616161 !important;
+}
+
+.darken-grey-text
+{
+    color: #2E2E2E;
+}
+
+.indigo
+{
+   background-color: #1e53be !important;
+}
+
+.indigo-gradient
+{
+   background-image: linear-gradient(to top, #14419c 0%, #255fd3 99%, #255fd3 100%);
+}
+
+.btn
+{
+   margin-left: 0px;
+}
+
+/* .btn-success
+{
+    background-color: #ca9902;
+}
+
+.btn-success:hover
+{
+    background-color: #dbb02c !important;
+} */
+
+.card
+{
+   margin-bottom: 15px;
+}
+
+.card-title
+{
+   color: #ffffff;
+}
+
+.card-text
+{
+   color: #ffffff !important;
+}
+
+.currency-table
+{
+   width: 100%;
+}
+
+.currency-table td
+{
+   color: #ffffff !important;
+   padding-top: 3px;
+   padding-bottom: 3px;
+   padding-left: 10px;
+   padding-right: 3px;
+   font-weight: 400;
+}
+
+.currency-table-darker
+{
+   background-color: #305cae;
+}
+
+.currency-table-lighter
+{
+   background-color: #3763b7;
+}
+
+.trend-up
+{
+   float: right;
+   padding-top: 9px;
+   color: #1fc657;
+   font-size: 3rem;
+}
+
+.trend-down
+{
+   float: right;
+   padding-top: 9px;
+   color: #e92d2d;
+   font-size: 3rem;
+}
+
+.trend-plate
+{
+   float: right;
+   padding-top: 15px;
+   color: #4688f1;
+   font-size: 3rem;
+}
+
+.light-black
+{
+   background-color: #4f4f4f;
+   border: 1px solid !important;
+   border-color: #656565 !important;
+}
+
+.top-card-padding
+{
+   padding-top: 5px !important;
+   padding-bottom: 5px !important;
+}
+
+.wrapper
+{
+   padding-left: 65px;
+}
+
+.sidebar
+{
+    position: fixed;
+    top: 50px;
+    left: 0px;
+    width: 65px;
+    height: 100%;
+    overflow-y: auto;
+    background: #163f91;
+	color: #ffffff;
+	-webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.sidebar-nav
+{
+    position: absolute;
+    top: 52px;
+    width: 65px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.sidebar-nav li
+{
+    line-height: 40px;
+}
+.sidebar-nav li a
+{
+    display: block;
+    text-decoration: none;
+    color: #e8e8e8;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    font-size: 25px;
+}
+
+.sidebar-nav li.active a
+{
+    text-decoration: none;
+    color: #fff;
+    background: #fff;
+    background: rgba(34,87,187,1);
+}
+
+.sidebar-nav li a:hover
+{
+    text-decoration: none;
+    color: #fff;
+    background: #fff;
+    background: rgba(46,100,200,1);
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus
+{
+    text-decoration: none;
+}
+
+.sidebar-nav li span, .subbar li span
+{
+	display : none;
+}
+
+.sidebar-tooltip-editor {
+    position: fixed;
+    top: 114px;
+    left: 70px;
+    width: 130px;
+    margin: 0;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 5px;
+    color:#b0b0b0;
+    background-color:#202020;
+    border: 1px solid #505050;
+    border-radius:6px !important;
+    z-index: 10000;
+    display: none;
+}
+
+.sidebar-tooltip-students {
+    position: fixed;
+    top: 174px;
+    left: 70px;
+    width: 130px;
+    margin: 0;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 5px;
+    color:#b0b0b0;
+    background-color:#202020;
+    border: 1px solid #505050;
+    border-radius:6px !important;
+    z-index: 10100;
+    display: none;
+}
+
+.sidebar-tooltip-teachers {
+    position: fixed;
+    top: 234px;
+    left: 70px;
+    width: 130px;
+    margin: 0;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 5px;
+    color:#b0b0b0;
+    background-color:#202020;
+    border: 1px solid #505050;
+    border-radius:6px !important;
+    z-index: 10200;
+    display: none;
+}
+
+
+.sidebar-tooltip-classes {
+    position: fixed;
+    top: 294px;
+    left: 70px;
+    width: 130px;
+    margin: 0;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 5px;
+    color:#b0b0b0;
+    background-color:#202020;
+    border: 1px solid #505050;
+    border-radius:6px !important;
+    z-index: 10300;
+    display: none;
+}
+
+.sidebar-tooltip-courses {
+    position: fixed;
+    top: 354px;
+    left: 70px;
+    width: 130px;
+    margin: 0;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 5px;
+    color:#b0b0b0;
+    background-color:#202020;
+    border: 1px solid #505050;
+    border-radius:6px !important;
+    z-index: 10400;
+    display: none;
+}
+
+.sidebar-tooltip-tasks {
+    position: fixed;
+    top: 414px;
+    left: 70px;
+    width: 130px;
+    margin: 0;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 5px;
+    color:#b0b0b0;
+    background-color:#202020;
+    border: 1px solid #505050;
+    border-radius:6px !important;
+    z-index: 10500;
+    display: none;
+}
+
+.sidebar-tooltip-solutions {
+    position: fixed;
+    top: 474px;
+    left: 70px;
+    width: 130px;
+    margin: 0;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 5px;
+    color:#b0b0b0;
+    background-color:#202020;
+    border: 1px solid #505050;
+    border-radius:6px !important;
+    z-index: 10600;
+    display: none;
+}
+
+.sidebar-tooltip-ratings {
+    position: fixed;
+    top: 534px;
+    left: 70px;
+    width: 130px;
+    margin: 0;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 5px;
+    color:#b0b0b0;
+    background-color:#202020;
+    border: 1px solid #505050;
+    border-radius:6px !important;
+    z-index: 10700;
+    display: none;
+}
+
+.list-style {
+   background-color:#505050!important;
+   color:rgba(255,255,255,0.95)!important;
+}
+
+.table-black {
+   background-color:#505050!important;
+   color:rgba(255,255,255,0.95)!important;
+}
+
+.table td, th {
+   border-top: 1px solid #707070!important;
+   color:rgba(255,255,255,0.95);
+}
+
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #707070!important;
+    color:rgba(255,255,255,0.95);
+}
+
+</style>
+</head>
+<body class="hm-gradient">
+   <main>
+          <nav class="mb-4 navbar fixed-top navbar-expand-lg navbar-dark indigo">
+                <!-- <a class="navbar-brand font-bold" href="#">Navbar</a> -->
+                <a class="navbar-brand" href="index.php" style="margin-right: 40px;"><div class="logo_main"></div></a>
+               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-3" aria-controls="navbarSupportedContent-3" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent-3">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Главная <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Отчеты</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Настройки</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Контент</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Администраторы</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Чат</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Что-то еще...</a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-unique" aria-labelledby="navbarDropdownMenuLink-3">
+                                <a class="dropdown-item" href="#">Что-то еще 1</a>
+                                <a class="dropdown-item" href="#">Что-то еще 2</a>
+                                <a class="dropdown-item" href="#">Что-то еще 3</a>
+                            </div>
+                        </li>
+                    </ul>
+                   <form class="form-inline">
+                        <button class="btn btn-sm btn-success btn-rounded" type="submit">Выход</button>
+                    </form>
+                </div>
+            </nav>
+
+    <div class="wrapper">
+
+       <div class="sidebar">
+          <ul class="sidebar-nav">
+             <li id="editor"><a href="/codeEditor"><i class="fas fa-laptop-code"></i> <span>Редактор</span></a></li>
+             <li id="students" class="active"><a href="/adminStudents"><i class="fas fa-user-graduate"></i> <span>Студенты</span></a></li>
+             <li id="teachers"><a href="/adminTeachers"><i class="fas fa-chalkboard-teacher"></i> <span>Учителя</span></a></li>
+             <li id="classes"><a href="/adminClasses"><i class="fas fa-users"></i> <span>Классы</span></a></li>
+             <li id="courses"><a href="/adminCourses"><i class="fas fa-book-open"></i> <span>Курсы</span></a></li>
+             <li id="tasks"><a href="/adminTasks"><i class="fas fa-flag-checkered"></i> <span>Задачи</span></a></li>
+             <li id="solutions"><a href="/adminTaskResults"><i class="fas fa-check"></i> <span>Решения</span></a></li>
+             <li id="ratings"><a href="/adminRatings"><i class="fas fa-star"></i> <span>Рейтинги</span></a></li>
+          </ul>
+       </div>
+
+       <div class="sidebar-tooltip-editor" id="sidebar-tooltip-editor">Редактор</div>
+       <div class="sidebar-tooltip-students" id="sidebar-tooltip-students">Студенты</div>
+       <div class="sidebar-tooltip-teachers" id="sidebar-tooltip-teachers">Учителя</div>
+       <div class="sidebar-tooltip-classes" id="sidebar-tooltip-classes">Классы</div>
+       <div class="sidebar-tooltip-courses" id="sidebar-tooltip-courses">Курсы</div>
+       <div class="sidebar-tooltip-tasks" id="sidebar-tooltip-tasks">Задачи</div>
+       <div class="sidebar-tooltip-solutions" id="sidebar-tooltip-solutions">Решения</div>
+       <div class="sidebar-tooltip-ratings" id="sidebar-tooltip-ratings">Рейтинги</div>
+
+    <div style="margin-top: 74px; margin-left: 20px; margin-right: 20px;">
+
+      <!-- Heading -->
+      <div class="card mb-4" style="background-color:#3a3a3a;">
+
+        <!--Card content-->
+        <div class="card-body d-sm-flex justify-content-between" style="color:rgba(255,255,255,0.95);">
+
+          <h4 class="mb-2 mb-sm-0 pt-1">
+            <a href="/adminMain">Главная</a>
+            <span>/</span>
+            <span>Студенты</span>
+          </h4>
+
+          <form class="d-flex justify-content-center">
+            <!-- Default input -->
+            <input type="search" placeholder="Введите запрос" aria-label="Search" class="form-control">
+            <button class="btn btn-primary btn-sm my-0 p" type="submit">
+              <i class="fas fa-search"></i>
+            </button>
+
+          </form>
+
+        </div>
+
+      </div>
+      <!-- Heading -->
+
+      <!--Grid row-->
+      <div class="row">
+
+        <!--Grid column-->
+        <div class="col-lg-12 mb-4">
+
+          <div th:if="${operationSuccess}" class="alert alert-success" role="alert"> 
+             <div th:utext="${operationSuccess}"></div>
+          </div>
+          <div th:if="${operationError}" class="alert alert-danger" role="alert">    
+             <div th:utext="${operationError}"></div>
+          </div>
+
+          <!--Card-->
+          <div class="card" style="background-color:#3a3a3a;">
+
+            <!--Card content-->
+            <div class="card-body" style="color:rgba(255,255,255,0.95);">
+
+               <form method="POST" th:action="@{/adminStudentsAdd}" th:object="${coderStudents}">
+
+                <div class="form-group row">
+                   <label class="col-lg-3 col-form-label" for="studentFirstName">Имя</label>
+                   <div class="col-lg-4">
+                      <input type="text" class="form-control" id="studentFirstName" th:field="*{studentFirstName}">
+                   </div>
+                   <span class="validationError" style="color: red;"
+                      th:if="${#fields.hasErrors('studentFirstName')}"
+                      th:errors="*{studentFirstName}">Ошибка</span>
+                    <div class="col-lg-5"></div>
+                </div>
+                <div class="form-group row">
+                   <label class="col-lg-3 col-form-label" for="studentMiddleName">Отчество</label>
+                   <div class="col-lg-4">
+                      <input type="text" class="form-control" id="studentMiddleName" th:field="*{studentMiddleName}">
+                   </div>
+                   <span class="validationError" style="color: red;"
+                      th:if="${#fields.hasErrors('studentMiddleName')}"
+                      th:errors="*{studentMiddleName}">Ошибка</span>
+                    <div class="col-lg-5"></div>
+                </div>
+                <div class="form-group row">
+                   <label class="col-lg-3 col-form-label" for="studentLastName">Фамилия</label>
+                   <div class="col-lg-4">
+                      <input type="text" class="form-control" id="studentLastName" th:field="*{studentLastName}">
+                   </div>
+                   <span class="validationError" style="color: red;"
+                      th:if="${#fields.hasErrors('studentLastName')}"
+                      th:errors="*{studentLastName}">Ошибка</span>
+                    <div class="col-lg-5"></div>
+                </div>
+                <div class="form-group row">
+                   <label class="col-lg-3 col-form-label" for="studentEmail">Email</label>
+                   <div class="col-lg-4">
+                      <input type="text" class="form-control" id="studentEmail" th:field="*{studentEmail}">
+                   </div>
+                   <span class="validationError" style="color: red;"
+                      th:if="${#fields.hasErrors('studentEmail')}"
+                      th:errors="*{studentEmail}">Ошибка</span>
+                    <div class="col-lg-5"></div>
+                </div>
+                <div class="form-group row">
+                   <label class="col-lg-3 col-form-label" for="studentLogin">Логин</label>
+                   <div class="col-lg-4">
+                      <input type="text" class="form-control" id="studentLogin" th:field="*{studentLogin}">
+                   </div>
+                   <span class="validationError" style="color: red;"
+                      th:if="${#fields.hasErrors('studentLogin')}"
+                      th:errors="*{studentLogin}">Ошибка</span>
+                    <div class="col-lg-5"></div>
+                </div>
+                <div class="form-group row">
+                   <label class="col-lg-3 col-form-label" for="studentPassword">Пароль</label>
+                   <div class="col-lg-4">
+                      <input type="text" class="form-control" id="studentPassword" th:field="*{studentPassword}">
+                   </div>
+                   <span class="validationError" style="color: red;"
+                      th:if="${#fields.hasErrors('studentPassword')}"
+                      th:errors="*{studentPassword}">Ошибка</span>
+                    <div class="col-lg-5"></div>
+                </div>
+                <div class="form-group row">
+                   <label class="col-lg-3 col-form-label" for="studentPasswordMatch">Пароль повторно</label>
+                   <div class="col-lg-4">
+                      <input type="text" class="form-control" id="studentPasswordMatch" th:field="*{studentPasswordMatch}">
+                   </div>
+                   <span class="validationError" style="color: red;"
+                      th:if="${#fields.hasErrors('studentPasswordMatch')}"
+                      th:errors="*{studentPasswordMatch}">Ошибка</span>
+                    <div class="col-lg-5"></div>
+                </div>
+                <div class="form-group row">
+                   <label class="col-lg-3 col-form-label" for="studentCompanyName">Компания</label>
+                   <div class="col-lg-4">
+                      <input type="text" class="form-control" id="studentCompanyName" th:field="*{studentCompanyName}">
+                   </div>
+                   <span class="validationError" style="color: red;"
+                      th:if="${#fields.hasErrors('studentCompanyName')}"
+                      th:errors="*{studentCompanyName}">Ошибка</span>
+                    <div class="col-lg-5"></div>
+                </div>
+                <div class="form-group row">
+                   <label class="col-lg-3 col-form-label" for="studentAddress">Адрес</label>
+                   <div class="col-lg-4">
+                      <input type="text" class="form-control" id="studentAddress" th:field="*{studentAddress}">
+                   </div>
+                   <span class="validationError" style="color: red;"
+                      th:if="${#fields.hasErrors('studentAddress')}"
+                      th:errors="*{studentAddress}">Ошибка</span>
+                    <div class="col-lg-5"></div>
+                </div>
+                <div class="form-group row">
+                   <label class="col-lg-3 col-form-label" for="studentPhone">Телефон</label>
+                   <div class="col-lg-4">
+                      <input type="text" class="form-control" id="studentPhone" th:field="*{studentPhone}">
+                   </div>
+                   <span class="validationError" style="color: red;"
+                      th:if="${#fields.hasErrors('studentPhone')}"
+                      th:errors="*{studentPhone}">Ошибка</span>
+                    <div class="col-lg-5"></div>
+                </div>
+                <div class="form-group row">
+                   <label class="col-lg-3 col-form-label" for="studentCity">Город</label>
+                   <div class="col-lg-4">
+                      <input type="text" class="form-control" id="studentCity" th:field="*{studentCity}">
+                   </div>
+                   <span class="validationError" style="color: red;"
+                      th:if="${#fields.hasErrors('studentCity')}"
+                      th:errors="*{studentCity}">Ошибка</span>
+                    <div class="col-lg-5"></div>
+                </div>
+                <div class="form-group row">
+                   <label class="col-lg-3 col-form-label" for="studentZip">Индекс</label>
+                   <div class="col-lg-4">
+                      <input type="text" class="form-control" id="studentZip" th:field="*{studentZip}">
+                   </div>
+                   <span class="validationError" style="color: red;"
+                      th:if="${#fields.hasErrors('studentZip')}"
+                      th:errors="*{studentZip}">Ошибка</span>
+                    <div class="col-lg-5"></div>
+                </div>
+                <div class="form-group row">
+                   <label class="col-lg-3 col-form-label" for="studentState">Регион</label>
+                   <div class="col-lg-4">
+                      <input type="text" class="form-control" id="studentState" th:field="*{studentState}">
+                   </div>
+                   <span class="validationError" style="color: red;"
+                      th:if="${#fields.hasErrors('studentState')}"
+                      th:errors="*{studentState}">Ошибка</span>
+                    <div class="col-lg-5"></div>
+                </div>
+                <div class="form-group row">
+                   <label class="col-lg-3 col-form-label" for="studentCountry">Страна</label>
+                   <div class="col-lg-4">
+                      <input type="text" class="form-control" id="studentCountry" th:field="*{studentCountry}">
+                   </div>
+                   <span class="validationError" style="color: red;"
+                      th:if="${#fields.hasErrors('studentCountry')}"
+                      th:errors="*{studentCountry}">Ошибка</span>
+                    <div class="col-lg-5"></div>
+                </div>
+                <div class="form-group row">
+                   <label class="col-lg-3 col-form-label" for="studentAboutMe">Обо мне</label>
+                   <div class="col-lg-4">
+                      <textarea class="form-control" rows="7" id="studentAboutMe" th:field="*{studentAboutMe}"></textarea>
+                   </div>
+                   <span class="validationError" style="color: red;"
+                      th:if="${#fields.hasErrors('studentAboutMe')}"
+                      th:errors="*{studentAboutMe}">Ошибка</span>
+                    <div class="col-lg-5"></div>
+                </div>
+                <div class="form-group row">
+                   <label class="col-lg-3 col-form-label" for="profilePhotoUrl">Фото</label>
+                   <div class="col-lg-4">
+                      <input type="text" class="form-control" id="profilePhotoUrl" th:field="*{profilePhotoUrl}">
+                   </div>
+                   <span class="validationError" style="color: red;"
+                      th:if="${#fields.hasErrors('profilePhotoUrl')}"
+                      th:errors="*{profilePhotoUrl}">Ошибка</span>
+                    <div class="col-lg-5"></div>
+                </div>
+				  <div class="form-group row">
+				     <label class="col-lg-3 col-form-label" for="studentType">Тип пользователя</label>
+					 <div class="col-lg-4">
+                        <select class="form-control" th:field="*{studentType}">
+                           <option th:value="'1'" th:text="Студент" selected></option>
+                        </select>
+					 </div>
+					 <span class="validationError" style="color: red;"
+                           th:if="${#fields.hasErrors('studentType')}"
+                           th:errors="*{studentType}">Ошибка</span>
+					 <div class="col-lg-5"></div>
+ 				  </div>
+ 				  <div class="form-group row">
+				     <label class="col-lg-3 col-form-label" for="studentMembership">Тарифный план</label>
+					 <div class="col-lg-4">
+                        <select class="form-control" th:field="*{studentMembership}">
+                           <option th:value="'1'" th:text="Регулярный" selected></option>
+                        </select>
+					 </div>
+					 <span class="validationError" style="color: red;"
+                           th:if="${#fields.hasErrors('studentMembership')}"
+                           th:errors="*{studentMembership}">Ошибка</span>
+					 <div class="col-lg-5"></div>
+ 				  </div>
+                <div class="form-group row">
+                   <label class="col-lg-3 col-form-label" for="studentRating">Рейтинг студента</label>
+                   <div class="col-lg-4">
+                      <input type="text" class="form-control" id="studentRating" th:field="*{studentRating}">
+                   </div>
+                   <span class="validationError" style="color: red;"
+                      th:if="${#fields.hasErrors('studentRating')}"
+                      th:errors="*{studentRating}">Ошибка</span>
+                    <div class="col-lg-5"></div>
+                </div>
+                <div class="form-group row">
+                   <label class="col-lg-3 col-form-label" for="studentCoursesEnrolled">Открытые курсы</label>
+                   <div class="col-lg-4">
+                      <input type="text" class="form-control" id="studentCoursesEnrolled" th:field="*{studentCoursesEnrolled}">
+                   </div>
+                   <span class="validationError" style="color: red;"
+                      th:if="${#fields.hasErrors('studentCoursesEnrolled')}"
+                      th:errors="*{studentCoursesEnrolled}">Ошибка</span>
+                    <div class="col-lg-5"></div>
+                </div>
+                <div class="form-group row">
+                   <label class="col-lg-3 col-form-label" for="studentTasksComplete">Количество выполненных задач</label>
+                   <div class="col-lg-4">
+                      <input type="text" class="form-control" id="studentTasksComplete" th:field="*{studentTasksComplete}">
+                   </div>
+                   <span class="validationError" style="color: red;"
+                      th:if="${#fields.hasErrors('studentTasksComplete')}"
+                      th:errors="*{studentTasksComplete}">Ошибка</span>
+                    <div class="col-lg-5"></div>
+                </div>
+                <div class="form-group row">
+                   <label class="col-lg-3 col-form-label" for="instagramId">Instagram Id</label>
+                   <div class="col-lg-4">
+                      <input type="text" class="form-control" id="instagramId" th:field="*{instagramId}">
+                   </div>
+                   <span class="validationError" style="color: red;"
+                      th:if="${#fields.hasErrors('instagramId')}"
+                      th:errors="*{instagramId}">Ошибка</span>
+                    <div class="col-lg-5"></div>
+                </div>
+                <div class="form-group row">
+                   <label class="col-lg-3 col-form-label" for="facebookId">Facebook Id</label>
+                   <div class="col-lg-4">
+                      <input type="text" class="form-control" id="facebookId" th:field="*{facebookId}">
+                   </div>
+                   <span class="validationError" style="color: red;"
+                      th:if="${#fields.hasErrors('facebookId')}"
+                      th:errors="*{facebookId}">Ошибка</span>
+                    <div class="col-lg-5"></div>
+                </div>
+                <div class="form-group row">
+                   <label class="col-lg-3 col-form-label" for="vkId">VK Id</label>
+                   <div class="col-lg-4">
+                      <input type="text" class="form-control" id="vkId" th:field="*{vkId}">
+                   </div>
+                   <span class="validationError" style="color: red;"
+                      th:if="${#fields.hasErrors('vkId')}"
+                      th:errors="*{vkId}">Ошибка</span>
+                    <div class="col-lg-5"></div>
+                </div>
+                <div class="form-group row">
+                   <label class="col-lg-3 col-form-label" for="youtubeId">YouTube Id</label>
+                   <div class="col-lg-4">
+                      <input type="text" class="form-control" id="youtubeId" th:field="*{youtubeId}">
+                   </div>
+                   <span class="validationError" style="color: red;"
+                      th:if="${#fields.hasErrors('youtubeId')}"
+                      th:errors="*{youtubeId}">Ошибка</span>
+                    <div class="col-lg-5"></div>
+                </div>
+                <div class="form-group row">
+                   <label class="col-lg-3 col-form-label" for="twitterId">Twitter Id</label>
+                   <div class="col-lg-4">
+                      <input type="text" class="form-control" id="twitterId" th:field="*{twitterId}">
+                   </div>
+                   <span class="validationError" style="color: red;"
+                      th:if="${#fields.hasErrors('twitterId')}"
+                      th:errors="*{twitterId}">Ошибка</span>
+                    <div class="col-lg-5"></div>
+                </div>
+				  <div class="form-group row">
+				     <label class="col-lg-3 col-form-label" for="status">Статус</label>
+					 <div class="col-lg-4">
+                        <select class="form-control" th:field="*{status}">
+                           <option th:value="'1'" th:text="Активен" selected></option>
+                           <option th:value="'0'" th:text="Неактивен"></option>
+                        </select>
+					 </div>
+					 <span class="validationError" style="color: red;"
+                           th:if="${#fields.hasErrors('status')}"
+                           th:errors="*{status}">Ошибка</span>
+					 <div class="col-lg-5"></div>
+ 				  </div>  				  
+ 				  <div class="form-group row">
+                     <div class="col-lg-3"></div>
+                     <div class="col-lg-4">
+                        <div class="text-center">
+                           <button type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i> Добавить</button>
+                        </div>
+                     </div>
+                     <div class="col-lg-5"></div>
+                  </div>
+               </form>
+ 
+            </div>
+
+          </div>
+          <!--/.Card-->
+
+        </div>
+        <!--Grid column-->
+        
+      </div>
+      <!--Grid row-->
+      
+    </div>
+
+</div> <!--Wrapper-->
+
+   </main>
+
+  <script type="text/javascript" src="../assets/js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="../assets/js/popper.min.js"></script>
+  <script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="../assets/js/mdb.min.js"></script>
+
+  <script type="text/javascript">
+    // Animations initialization
+    new WOW().init();
+
+  </script>
+
+  <script>
+
+  document.getElementById("editor").onmouseover = function() {
+     document.getElementById("sidebar-tooltip-editor").style.display = "block";
+  };
+
+  document.getElementById("editor").onmouseout = function() {
+     document.getElementById("sidebar-tooltip-editor").style.display = "none";
+  };
+
+  document.getElementById("students").onmouseover = function() {
+     document.getElementById("sidebar-tooltip-students").style.display = "block";
+  };
+
+  document.getElementById("students").onmouseout = function() {
+     document.getElementById("sidebar-tooltip-students").style.display = "none";
+  };
+
+  document.getElementById("teachers").onmouseover = function() {
+     document.getElementById("sidebar-tooltip-teachers").style.display = "block";
+  };
+
+  document.getElementById("teachers").onmouseout = function() {
+     document.getElementById("sidebar-tooltip-teachers").style.display = "none";
+  };
+
+  document.getElementById("classes").onmouseover = function() {
+     document.getElementById("sidebar-tooltip-classes").style.display = "block";
+  };
+
+  document.getElementById("classes").onmouseout = function() {
+     document.getElementById("sidebar-tooltip-classes").style.display = "none";
+  };
+ 
+  document.getElementById("courses").onmouseover = function() {
+     document.getElementById("sidebar-tooltip-courses").style.display = "block";
+  };
+
+  document.getElementById("courses").onmouseout = function() {
+     document.getElementById("sidebar-tooltip-courses").style.display = "none";
+  };
+  
+  document.getElementById("tasks").onmouseover = function() {
+     document.getElementById("sidebar-tooltip-tasks").style.display = "block";
+  };
+
+  document.getElementById("tasks").onmouseout = function() {
+     document.getElementById("sidebar-tooltip-tasks").style.display = "none";
+  };
+
+  document.getElementById("solutions").onmouseover = function() {
+     document.getElementById("sidebar-tooltip-solutions").style.display = "block";
+  };
+
+  document.getElementById("solutions").onmouseout = function() {
+     document.getElementById("sidebar-tooltip-solutions").style.display = "none";
+  };
+
+  document.getElementById("ratings").onmouseover = function() {
+     document.getElementById("sidebar-tooltip-ratings").style.display = "block";
+  };
+
+  document.getElementById("ratings").onmouseout = function() {
+     document.getElementById("sidebar-tooltip-ratings").style.display = "none";
+  };
+ 
+  </script>
+
+</body>
+</html>

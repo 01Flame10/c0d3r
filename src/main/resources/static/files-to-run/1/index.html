@@ -1,0 +1,26 @@
+package bmstu.tasd.lab2;
+
+
+import bmstu.tasd.lab2.console.TasdUserInterface;
+import bmstu.tasd.lab2.entity.TasdBook;
+import bmstu.tasd.lab2.repository.TasdBookRepository;
+
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+
+public class Main {
+
+    public static void main(String[] args) {
+        TasdUserInterface userInterface = new TasdUserInterface();
+        boolean running = true;
+        while (running)
+            try {
+                running = userInterface.chooseNextAction();
+            } catch (Exception e) {
+                System.out.println("Got error with me: " + e.getMessage());
+
+}
+}
+}
+
