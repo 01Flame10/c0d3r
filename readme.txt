@@ -1,4 +1,4 @@
-**Ссылки**
+Ссылки:
 - Презентация https://docs.google.com/presentation/d/10Gli8RFJMT-LKowyRCrjZM6SG_t9lYiY10-K_s1QIbU/edit?usp=sharing
 - Видео https://drive.google.com/file/d/1MNqrY08QZJohf-tMbEc_jqaYx-CnUDgT/view?usp=sharing
 
